@@ -21,7 +21,8 @@ RUN \
 	mono-devel \
 	mono-vbnc \
 	python \
-	sqlite3 && \
+	sqlite3 \
+	unzip && \
 
 # clean up
  rm -rf \
