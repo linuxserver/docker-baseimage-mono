@@ -25,7 +25,7 @@
 
 [![](https://images.microbadger.com/badges/image/lsiobase/mono.svg)](https://microbadger.com/images/lsiobase/mono "Get your own image badge on microbadger.com")
 
-A custom base image built with [Ubuntu cloud image][appurl], mono[mono] and [S6 overlay](https://github.com/just-containers/s6-overlay).. 
+A custom base image built with [Ubuntu cloud image][appurl], mono[monourl] and [S6 overlay](https://github.com/just-containers/s6-overlay).. 
 
 Featuring :-
 
