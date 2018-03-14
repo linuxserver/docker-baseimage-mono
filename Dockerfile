@@ -1,4 +1,4 @@
-FROM lsiobase/xenial
+FROM lsiobase/ubuntu:xenial
 
 # environment settings
 ARG DEBIAN_FRONTEND="noninteractive"

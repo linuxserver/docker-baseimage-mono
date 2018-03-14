@@ -1,19 +1,34 @@
 [linuxserverurl]: https://linuxserver.io
 [forumurl]: https://forum.linuxserver.io
 [ircurl]: https://www.linuxserver.io/irc/
-[podcasturl]: https://www.linuxserver.io/podcast/
+[appurl]: https://cloud-images.ubuntu.com
+[dockerfileurl]: https://github.com/linuxserver/docker-baseimage-ubuntu/blob/master/Dockerfile
+[monourl] : https://www.mono-project.com
 
-[![linuxserver.io](https://raw.githubusercontent.com/linuxserver/docker-templates/master/linuxserver.io/img/linuxserver_medium.png)][linuxserverurl]
 
-[Dockerfile](https://github.com/linuxserver/docker-baseimage-mono/blob/master/Dockerfile)
+[![linuxserver.io](https://raw.githubusercontent.com/linuxserver/docker-templates/master/linuxserver.io/img/linuxserver_medium.png?v=4&s=4000)][linuxserverurl]
+
+
+## Contact information:- 
+
+| Type | Address/Details | 
+| :---: | --- |
+| Discord | [Discord](https://discord.gg/YWrKVTn) |
+| IRC | freenode at `#linuxserver.io` more information at:- [IRC][ircurl]
+| Forum | [Linuserver.io forum][forumurl] |
+
+&nbsp;
+&nbsp;
+
+
+[![](https://raw.githubusercontent.com/linuxserver/docker-templates/master/linuxserver.io/img/Dockerfile-Link-green.png)](https://github.com/linuxserver/docker-baseimage-mono/blob/master/Dockerfile)
 
 [![](https://images.microbadger.com/badges/image/lsiobase/mono.svg)](https://microbadger.com/images/lsiobase/mono "Get your own image badge on microbadger.com")
 
-### This base container is not aimed at public consumption. It exists to serve as a single endpoint for LinuxServer.io containers and is based upon [Ubuntu Xenial](https://hub.docker.com/_/ubuntu/) and [S6 overlay](https://github.com/just-containers/s6-overlay).
+A custom base image built with [Ubuntu cloud image][appurl], mono[mono] and [S6 overlay](https://github.com/just-containers/s6-overlay).. 
 
-If you want to comment\contribute to this image, are looking for support on any of our other work , or are curious about us in general, check out the following.
+Featuring :-
 
-* [forum.linuxserver.io][forumurl]
-* [IRC][ircurl] on freenode at `#linuxserver.io`
-* [Podcast][podcasturl] covers everything to do with getting the most from your Linux Server plus a focus on all things Docker and containerisation!
+ + weekly updates 
+ + security updates
 
