@@ -3,7 +3,7 @@
 [ircurl]: https://www.linuxserver.io/irc/
 [appurl]: https://cloud-images.ubuntu.com
 [dockerfileurl]: https://github.com/linuxserver/docker-baseimage-ubuntu/blob/master/Dockerfile
-[monourl] : https://www.mono-project.com
+[monourl]: https://www.mono-project.com
 
 
 [![linuxserver.io](https://raw.githubusercontent.com/linuxserver/docker-templates/master/linuxserver.io/img/linuxserver_medium.png?v=4&s=4000)][linuxserverurl]
