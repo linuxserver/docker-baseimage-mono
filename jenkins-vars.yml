@@ -1,0 +1,19 @@
+---
+
+# jenkins variables
+project_name: docker-baseimage-mono
+external_type: os
+release_type: stable
+release_tag: bionic
+ls_branch: bionic
+repo_vars:
+  - BUILD_VERSION_ARG = 'MONO_VERSION'
+  - LS_USER = 'linuxserver'
+  - LS_REPO = 'docker-baseimage-mono'
+  - CONTAINER_NAME = 'baseimage-mono'
+  - DOCKERHUB_IMAGE = 'lsiobase/mono'
+  - DEV_DOCKERHUB_IMAGE = 'lsiodev/mono'
+  - PR_DOCKERHUB_IMAGE = 'lspipepr/mono'
+  - DIST_IMAGE = 'ubuntu'
+  - MULTIARCH='true'
+  - CI='false'
