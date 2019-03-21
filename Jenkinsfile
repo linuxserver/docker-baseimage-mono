@@ -19,7 +19,14 @@ pipeline {
     PR_DOCKERHUB_IMAGE = 'lspipepr/mono'
     DIST_IMAGE = 'ubuntu'
     MULTIARCH='true'
-    CI='false'
+    CI='true'
+    CI_WEB='false'
+    CI_PORT='80'
+    CI_SSL='true'
+    CI_DELAY='30'
+    CI_DOCKERENV='TZ=US/Pacific'
+    CI_AUTH='user:password'
+    CI_WEBPATH=''
   }
   stages {
     // Setup all the basic environment variables needed for the build
@@ -113,7 +120,7 @@ pipeline {
         script{
           env.IMAGE = env.DOCKERHUB_IMAGE
           if (env.MULTIARCH == 'true') {
-            env.CI_TAGS = 'amd64-' + env.EXT_RELEASE_CLEAN + '-ls' + env.LS_TAG_NUMBER + '|arm32v6-' + env.EXT_RELEASE_CLEAN + '-ls' + env.LS_TAG_NUMBER + '|arm64v8-' + env.EXT_RELEASE_CLEAN + '-ls' + env.LS_TAG_NUMBER
+            env.CI_TAGS = 'amd64-' + env.EXT_RELEASE_CLEAN + '-ls' + env.LS_TAG_NUMBER + '|arm32v7-' + env.EXT_RELEASE_CLEAN + '-ls' + env.LS_TAG_NUMBER + '|arm64v8-' + env.EXT_RELEASE_CLEAN + '-ls' + env.LS_TAG_NUMBER
           } else {
             env.CI_TAGS = env.EXT_RELEASE_CLEAN + '-ls' + env.LS_TAG_NUMBER
           }
@@ -131,7 +138,7 @@ pipeline {
         script{
           env.IMAGE = env.DEV_DOCKERHUB_IMAGE
           if (env.MULTIARCH == 'true') {
-            env.CI_TAGS = 'amd64-' + env.EXT_RELEASE_CLEAN + '-pkg-' + env.PACKAGE_TAG + '-dev-' + env.COMMIT_SHA + '|arm32v6-' + env.EXT_RELEASE_CLEAN + '-pkg-' + env.PACKAGE_TAG + '-dev-' + env.COMMIT_SHA + '|arm64v8-' + env.EXT_RELEASE_CLEAN + '-pkg-' + env.PACKAGE_TAG + '-dev-' + env.COMMIT_SHA
+            env.CI_TAGS = 'amd64-' + env.EXT_RELEASE_CLEAN + '-pkg-' + env.PACKAGE_TAG + '-dev-' + env.COMMIT_SHA + '|arm32v7-' + env.EXT_RELEASE_CLEAN + '-pkg-' + env.PACKAGE_TAG + '-dev-' + env.COMMIT_SHA + '|arm64v8-' + env.EXT_RELEASE_CLEAN + '-pkg-' + env.PACKAGE_TAG + '-dev-' + env.COMMIT_SHA
           } else {
             env.CI_TAGS = env.EXT_RELEASE_CLEAN + '-pkg-' + env.PACKAGE_TAG + '-dev-' + env.COMMIT_SHA
           }
@@ -149,7 +156,7 @@ pipeline {
         script{
           env.IMAGE = env.PR_DOCKERHUB_IMAGE
           if (env.MULTIARCH == 'true') {
-            env.CI_TAGS = 'amd64-' + env.EXT_RELEASE_CLEAN + '-pkg-' + env.PACKAGE_TAG + '-pr-' + env.PULL_REQUEST + '|arm32v6-' + env.EXT_RELEASE_CLEAN + '-pkg-' + env.PACKAGE_TAG + '-pr-' + env.PULL_REQUEST + '|arm64v8-' + env.EXT_RELEASE_CLEAN + '-pkg-' + env.PACKAGE_TAG + '-pr-' + env.PULL_REQUEST
+            env.CI_TAGS = 'amd64-' + env.EXT_RELEASE_CLEAN + '-pkg-' + env.PACKAGE_TAG + '-pr-' + env.PULL_REQUEST + '|arm32v7-' + env.EXT_RELEASE_CLEAN + '-pkg-' + env.PACKAGE_TAG + '-pr-' + env.PULL_REQUEST + '|arm64v8-' + env.EXT_RELEASE_CLEAN + '-pkg-' + env.PACKAGE_TAG + '-pr-' + env.PULL_REQUEST
           } else {
             env.CI_TAGS = env.EXT_RELEASE_CLEAN + '-pkg-' + env.PACKAGE_TAG + '-pr-' + env.PULL_REQUEST
           }
@@ -159,67 +166,32 @@ pipeline {
         }
       }
     }
-    // Use helper containers to render templated files
-    stage('Update-Templates') {
+    // Run ShellCheck
+    stage('ShellCheck') {
       when {
-        branch "bionic-5.14"
-        environment name: 'CHANGE_ID', value: ''
-        expression {
-          env.CONTAINER_NAME != null
-        }
+        environment name: 'CI', value: 'true'
       }
       steps {
-        sh '''#! /bin/bash
-              set -e
-              TEMPDIR=$(mktemp -d)
-              docker pull linuxserver/jenkins-builder:latest
-              docker run --rm -e CONTAINER_NAME=${CONTAINER_NAME} -e GITHUB_BRANCH=bionic-5.14 -v ${TEMPDIR}:/ansible/jenkins linuxserver/jenkins-builder:latest 
-              docker pull linuxserver/doc-builder:latest
-              docker run --rm -e CONTAINER_NAME=${CONTAINER_NAME} -e GITHUB_BRANCH=bionic-5.14 -v ${TEMPDIR}:/ansible/readme linuxserver/doc-builder:latest
-              if [ "$(md5sum ${TEMPDIR}/${LS_REPO}/Jenkinsfile | awk '{ print $1 }')" != "$(md5sum Jenkinsfile | awk '{ print $1 }')" ] || [ "$(md5sum ${TEMPDIR}/${CONTAINER_NAME}/README.md | awk '{ print $1 }')" != "$(md5sum README.md | awk '{ print $1 }')" ]; then
-                mkdir -p ${TEMPDIR}/repo
-                git clone https://github.com/${LS_USER}/${LS_REPO}.git ${TEMPDIR}/repo/${LS_REPO}
-                git --git-dir ${TEMPDIR}/repo/${LS_REPO}/.git checkout -f bionic-5.14
-                cp ${TEMPDIR}/${CONTAINER_NAME}/README.md ${TEMPDIR}/repo/${LS_REPO}/
-                cp ${TEMPDIR}/docker-${CONTAINER_NAME}/Jenkinsfile ${TEMPDIR}/repo/${LS_REPO}/
-                cd ${TEMPDIR}/repo/${LS_REPO}/
-                git --git-dir ${TEMPDIR}/repo/${LS_REPO}/.git add Jenkinsfile README.md
-                git --git-dir ${TEMPDIR}/repo/${LS_REPO}/.git commit -m 'Bot Updating Templated Files'
-                git --git-dir ${TEMPDIR}/repo/${LS_REPO}/.git push https://LinuxServer-CI:${GITHUB_TOKEN}@github.com/${LS_USER}/${LS_REPO}.git --all
-                echo "true" > /tmp/${COMMIT_SHA}-${BUILD_NUMBER}
-              else
-                echo "false" > /tmp/${COMMIT_SHA}-${BUILD_NUMBER}
-              fi
-              mkdir -p ${TEMPDIR}/gitbook
-              git clone https://github.com/linuxserver/docker-documentation.git ${TEMPDIR}/gitbook/docker-documentation
-              if [ "${BRANCH_NAME}" = "master" ] && [ ! -f ${TEMPDIR}/gitbook/docker-documentation/images/docker-${CONTAINER_NAME}.md ] || [ "$(md5sum ${TEMPDIR}/gitbook/docker-documentation/images/docker-${CONTAINER_NAME}.md | awk '{ print $1 }')" != "$(md5sum ${TEMPDIR}/${CONTAINER_NAME}/docker-${CONTAINER_NAME}.md | awk '{ print $1 }')" ]; then
-                cp ${TEMPDIR}/${CONTAINER_NAME}/docker-${CONTAINER_NAME}.md ${TEMPDIR}/gitbook/docker-documentation/images/
-                cd ${TEMPDIR}/gitbook/docker-documentation/
-                git add images/docker-${CONTAINER_NAME}.md
-                git commit -m 'Bot Updating Templated Files'
-                git push https://LinuxServer-CI:${GITHUB_TOKEN}@github.com/linuxserver/docker-documentation.git --all
-              fi
-              rm -Rf ${TEMPDIR}'''
-        script{
-          env.FILES_UPDATED = sh(
-            script: '''cat /tmp/${COMMIT_SHA}-${BUILD_NUMBER}''',
-            returnStdout: true).trim()
-        }
-      }
-    }
-    // Exit the build if the Templated files were just updated
-    stage('Template-exit') {
-      when {
-        branch "bionic-5.14"
-        environment name: 'CHANGE_ID', value: ''
-        environment name: 'FILES_UPDATED', value: 'true'
-        expression {
-          env.CONTAINER_NAME != null
-        }
-      }
-      steps {
-        script{
-          env.EXIT_STATUS = 'ABORTED'
+        withCredentials([
+          string(credentialsId: 'spaces-key', variable: 'DO_KEY'),
+          string(credentialsId: 'spaces-secret', variable: 'DO_SECRET')
+        ]) {
+          script{
+            env.SHELLCHECK_URL = 'https://lsio-ci.ams3.digitaloceanspaces.com/' + env.IMAGE + '/' + env.META_TAG + '/shellcheck-result.xml'
+          }
+          sh '''curl -sL https://raw.githubusercontent.com/linuxserver/docker-shellcheck/master/checkrun.sh | /bin/bash'''
+          sh '''#! /bin/bash
+                set -e
+                docker pull lsiodev/spaces-file-upload:latest
+                docker run --rm \
+                -e DESTINATION=\"${IMAGE}/${META_TAG}/shellcheck-result.xml\" \
+                -e FILE_NAME="shellcheck-result.xml" \
+                -e MIMETYPE="text/xml" \
+                -v ${WORKSPACE}:/mnt \
+                -e SECRET_KEY=\"${DO_SECRET}\" \
+                -e ACCESS_KEY=\"${DO_KEY}\" \
+                -t lsiodev/spaces-file-upload:latest \
+                python /upload.py'''
         }
       }
     }
@@ -269,13 +241,13 @@ pipeline {
                  '''
               sh "curl https://lsio-ci.ams3.digitaloceanspaces.com/qemu-arm-static -o qemu-arm-static"
               sh "chmod +x qemu-*"
-              sh "docker build --no-cache -f Dockerfile.armhf -t ${IMAGE}:arm32v6-${META_TAG} \
+              sh "docker build --no-cache -f Dockerfile.armhf -t ${IMAGE}:arm32v7-${META_TAG} \
                            --build-arg ${BUILD_VERSION_ARG}=${EXT_RELEASE} --build-arg VERSION=\"${META_TAG}\" --build-arg BUILD_DATE=${GITHUB_DATE} ."
-              sh "docker tag ${IMAGE}:arm32v6-${META_TAG} lsiodev/buildcache:arm32v6-${COMMIT_SHA}-${BUILD_NUMBER}"
-              sh "docker push lsiodev/buildcache:arm32v6-${COMMIT_SHA}-${BUILD_NUMBER}"
+              sh "docker tag ${IMAGE}:arm32v7-${META_TAG} lsiodev/buildcache:arm32v7-${COMMIT_SHA}-${BUILD_NUMBER}"
+              sh "docker push lsiodev/buildcache:arm32v7-${COMMIT_SHA}-${BUILD_NUMBER}"
               sh '''docker rmi \
-                    ${IMAGE}:arm32v6-${META_TAG} \
-                    lsiodev/buildcache:arm32v6-${COMMIT_SHA}-${BUILD_NUMBER} '''
+                    ${IMAGE}:arm32v7-${META_TAG} \
+                    lsiodev/buildcache:arm32v7-${COMMIT_SHA}-${BUILD_NUMBER} '''
             }
           }
         }
@@ -328,13 +300,13 @@ pipeline {
               fi
               if [ "${DIST_IMAGE}" == "alpine" ]; then
                 docker run --rm --entrypoint '/bin/sh' -v ${TEMPDIR}:/tmp ${LOCAL_CONTAINER} -c '\
-                  apk info > packages && \
-                  apk info -v > versions && \
-                  paste -d " " packages versions > /tmp/package_versions.txt && \
+                  apk info -v > /tmp/package_versions.txt && \
+                  sort -o /tmp/package_versions.txt  /tmp/package_versions.txt && \
                   chmod 777 /tmp/package_versions.txt'
               elif [ "${DIST_IMAGE}" == "ubuntu" ]; then
                 docker run --rm --entrypoint '/bin/sh' -v ${TEMPDIR}:/tmp ${LOCAL_CONTAINER} -c '\
-                  apt list -qq --installed | cut -d" " -f1-2 > /tmp/package_versions.txt && \
+                  apt list -qq --installed | sed "s#/.*now ##g" | cut -d" " -f1 > /tmp/package_versions.txt && \
+                  sort -o /tmp/package_versions.txt  /tmp/package_versions.txt && \
                   chmod 777 /tmp/package_versions.txt'
               fi
               NEW_PACKAGE_TAG=$(md5sum ${TEMPDIR}/package_versions.txt | cut -c1-8 )
@@ -414,9 +386,9 @@ pipeline {
                 set -e
                 docker pull lsiodev/ci:latest
                 if [ "${MULTIARCH}" == "true" ]; then
-                  docker pull lsiodev/buildcache:arm32v6-${COMMIT_SHA}-${BUILD_NUMBER}
+                  docker pull lsiodev/buildcache:arm32v7-${COMMIT_SHA}-${BUILD_NUMBER}
                   docker pull lsiodev/buildcache:arm64v8-${COMMIT_SHA}-${BUILD_NUMBER}
-                  docker tag lsiodev/buildcache:arm32v6-${COMMIT_SHA}-${BUILD_NUMBER} ${IMAGE}:arm32v6-${META_TAG}
+                  docker tag lsiodev/buildcache:arm32v7-${COMMIT_SHA}-${BUILD_NUMBER} ${IMAGE}:arm32v7-${META_TAG}
                   docker tag lsiodev/buildcache:arm64v8-${COMMIT_SHA}-${BUILD_NUMBER} ${IMAGE}:arm64v8-${META_TAG}
                 fi
                 docker run --rm \
@@ -493,38 +465,38 @@ pipeline {
              '''
           sh '''#! /bin/bash
                 if [ "${CI}" == "false" ]; then
-                  docker pull lsiodev/buildcache:arm32v6-${COMMIT_SHA}-${BUILD_NUMBER}
+                  docker pull lsiodev/buildcache:arm32v7-${COMMIT_SHA}-${BUILD_NUMBER}
                   docker pull lsiodev/buildcache:arm64v8-${COMMIT_SHA}-${BUILD_NUMBER}
-                  docker tag lsiodev/buildcache:arm32v6-${COMMIT_SHA}-${BUILD_NUMBER} ${IMAGE}:arm32v6-${META_TAG}
+                  docker tag lsiodev/buildcache:arm32v7-${COMMIT_SHA}-${BUILD_NUMBER} ${IMAGE}:arm32v7-${META_TAG}
                   docker tag lsiodev/buildcache:arm64v8-${COMMIT_SHA}-${BUILD_NUMBER} ${IMAGE}:arm64v8-${META_TAG}
                 fi'''
           sh "docker tag ${IMAGE}:amd64-${META_TAG} ${IMAGE}:amd64-bionic-5.14"
-          sh "docker tag ${IMAGE}:arm32v6-${META_TAG} ${IMAGE}:arm32v6-bionic-5.14"
+          sh "docker tag ${IMAGE}:arm32v7-${META_TAG} ${IMAGE}:arm32v7-bionic-5.14"
           sh "docker tag ${IMAGE}:arm64v8-${META_TAG} ${IMAGE}:arm64v8-bionic-5.14"
           sh "docker push ${IMAGE}:amd64-${META_TAG}"
-          sh "docker push ${IMAGE}:arm32v6-${META_TAG}"
+          sh "docker push ${IMAGE}:arm32v7-${META_TAG}"
           sh "docker push ${IMAGE}:arm64v8-${META_TAG}"
           sh "docker push ${IMAGE}:amd64-bionic-5.14"
-          sh "docker push ${IMAGE}:arm32v6-bionic-5.14"
+          sh "docker push ${IMAGE}:arm32v7-bionic-5.14"
           sh "docker push ${IMAGE}:arm64v8-bionic-5.14"
           sh "docker manifest push --purge ${IMAGE}:bionic-5.14 || :"
-          sh "docker manifest create ${IMAGE}:bionic-5.14 ${IMAGE}:amd64-bionic-5.14 ${IMAGE}:arm32v6-bionic-5.14 ${IMAGE}:arm64v8-bionic-5.14"
-          sh "docker manifest annotate ${IMAGE}:bionic-5.14 ${IMAGE}:arm32v6-bionic-5.14 --os linux --arch arm"
+          sh "docker manifest create ${IMAGE}:bionic-5.14 ${IMAGE}:amd64-bionic-5.14 ${IMAGE}:arm32v7-bionic-5.14 ${IMAGE}:arm64v8-bionic-5.14"
+          sh "docker manifest annotate ${IMAGE}:bionic-5.14 ${IMAGE}:arm32v7-bionic-5.14 --os linux --arch arm"
           sh "docker manifest annotate ${IMAGE}:bionic-5.14 ${IMAGE}:arm64v8-bionic-5.14 --os linux --arch arm64 --variant v8"
           sh "docker manifest push --purge ${IMAGE}:${META_TAG} || :"
-          sh "docker manifest create ${IMAGE}:${META_TAG} ${IMAGE}:amd64-${META_TAG} ${IMAGE}:arm32v6-${META_TAG} ${IMAGE}:arm64v8-${META_TAG}"
-          sh "docker manifest annotate ${IMAGE}:${META_TAG} ${IMAGE}:arm32v6-${META_TAG} --os linux --arch arm"
+          sh "docker manifest create ${IMAGE}:${META_TAG} ${IMAGE}:amd64-${META_TAG} ${IMAGE}:arm32v7-${META_TAG} ${IMAGE}:arm64v8-${META_TAG}"
+          sh "docker manifest annotate ${IMAGE}:${META_TAG} ${IMAGE}:arm32v7-${META_TAG} --os linux --arch arm"
           sh "docker manifest annotate ${IMAGE}:${META_TAG} ${IMAGE}:arm64v8-${META_TAG} --os linux --arch arm64 --variant v8"
           sh "docker manifest push --purge ${IMAGE}:bionic-5.14"
           sh "docker manifest push --purge ${IMAGE}:${META_TAG}"
           sh '''docker rmi \
                 ${IMAGE}:amd64-${META_TAG} \
                 ${IMAGE}:amd64-bionic-5.14 \
-                ${IMAGE}:arm32v6-${META_TAG} \
-                ${IMAGE}:arm32v6-bionic-5.14 \
+                ${IMAGE}:arm32v7-${META_TAG} \
+                ${IMAGE}:arm32v7-bionic-5.14 \
                 ${IMAGE}:arm64v8-${META_TAG} \
                 ${IMAGE}:arm64v8-bionic-5.14 \
-                lsiodev/buildcache:arm32v6-${COMMIT_SHA}-${BUILD_NUMBER} \
+                lsiodev/buildcache:arm32v7-${COMMIT_SHA}-${BUILD_NUMBER} \
                 lsiodev/buildcache:arm64v8-${COMMIT_SHA}-${BUILD_NUMBER} '''
         }
       }
@@ -595,7 +567,7 @@ pipeline {
       }
       steps {
         sh '''curl -H "Authorization: token ${GITHUB_TOKEN}" -X POST https://api.github.com/repos/${LS_USER}/${LS_REPO}/issues/${PULL_REQUEST}/comments \
-        -d '{"body": "I am a bot, here are the test results for this PR '${CI_URL}'"}' '''
+        -d '{"body": "I am a bot, here are the test results for this PR: \\n'${CI_URL}' \\n'${SHELLCHECK_URL}'"}' '''
       }
     }
   }
@@ -610,12 +582,12 @@ pipeline {
         }
         else if (currentBuild.currentResult == "SUCCESS"){
           sh ''' curl -X POST --data '{"avatar_url": "https://wiki.jenkins-ci.org/download/attachments/2916393/headshot.png","embeds": [{"color": 1681177,\
-                 "description": "**Build:**  '${BUILD_NUMBER}'\\n**CI Results:**  '${CI_URL}'\\n**Status:**  Success\\n**Job:** '${RUN_DISPLAY_URL}'\\n**Change:** '${CODE_URL}'\\n**External Release:**: '${RELEASE_LINK}'\\n**DockerHub:** '${DOCKERHUB_LINK}'\\n"}],\
+                 "description": "**Build:**  '${BUILD_NUMBER}'\\n**CI Results:**  '${CI_URL}'\\n**ShellCheck Results:**  '${SHELLCHECK_URL}'\\n**Status:**  Success\\n**Job:** '${RUN_DISPLAY_URL}'\\n**Change:** '${CODE_URL}'\\n**External Release:**: '${RELEASE_LINK}'\\n**DockerHub:** '${DOCKERHUB_LINK}'\\n"}],\
                  "username": "Jenkins"}' ${BUILDS_DISCORD} '''
         }
         else {
           sh ''' curl -X POST --data '{"avatar_url": "https://wiki.jenkins-ci.org/download/attachments/2916393/headshot.png","embeds": [{"color": 16711680,\
-                 "description": "**Build:**  '${BUILD_NUMBER}'\\n**CI Results:**  '${CI_URL}'\\n**Status:**  failure\\n**Job:** '${RUN_DISPLAY_URL}'\\n**Change:** '${CODE_URL}'\\n**External Release:**: '${RELEASE_LINK}'\\n**DockerHub:** '${DOCKERHUB_LINK}'\\n"}],\
+                 "description": "**Build:**  '${BUILD_NUMBER}'\\n**CI Results:**  '${CI_URL}'\\n**ShellCheck Results:**  '${SHELLCHECK_URL}'\\n**Status:**  failure\\n**Job:** '${RUN_DISPLAY_URL}'\\n**Change:** '${CODE_URL}'\\n**External Release:**: '${RELEASE_LINK}'\\n**DockerHub:** '${DOCKERHUB_LINK}'\\n"}],\
                  "username": "Jenkins"}' ${BUILDS_DISCORD} '''
         }
       }
