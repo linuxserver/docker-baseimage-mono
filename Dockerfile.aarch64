@@ -1,4 +1,4 @@
-FROM lsiobase/ubuntu:arm64v8-bionic
+FROM lsiobase/ubuntu:arm64v8-xenial
 
 # environment settings
 ARG DEBIAN_FRONTEND="noninteractive"
