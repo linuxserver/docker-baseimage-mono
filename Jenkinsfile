@@ -205,7 +205,7 @@ pipeline {
         environment name: 'EXIT_STATUS', value: ''
       }
       steps {
-        sh "docker build --no-cache -t ${IMAGE}:${META_TAG} \
+        sh "docker build --no-cache --pull -t ${IMAGE}:${META_TAG} \
         --build-arg ${BUILD_VERSION_ARG}=${EXT_RELEASE} --build-arg VERSION=\"${META_TAG}\" --build-arg BUILD_DATE=${GITHUB_DATE} ."
       }
     }
@@ -218,7 +218,7 @@ pipeline {
       parallel {
         stage('Build X86') {
           steps {
-            sh "docker build --no-cache -t ${IMAGE}:amd64-${META_TAG} \
+            sh "docker build --no-cache --pull -t ${IMAGE}:amd64-${META_TAG} \
             --build-arg ${BUILD_VERSION_ARG}=${EXT_RELEASE} --build-arg VERSION=\"${META_TAG}\" --build-arg BUILD_DATE=${GITHUB_DATE} ."
           }
         }
@@ -241,7 +241,7 @@ pipeline {
                  '''
               sh "curl https://lsio-ci.ams3.digitaloceanspaces.com/qemu-arm-static -o qemu-arm-static"
               sh "chmod +x qemu-*"
-              sh "docker build --no-cache -f Dockerfile.armhf -t ${IMAGE}:arm32v7-${META_TAG} \
+              sh "docker build --no-cache --pull -f Dockerfile.armhf -t ${IMAGE}:arm32v7-${META_TAG} \
                            --build-arg ${BUILD_VERSION_ARG}=${EXT_RELEASE} --build-arg VERSION=\"${META_TAG}\" --build-arg BUILD_DATE=${GITHUB_DATE} ."
               sh "docker tag ${IMAGE}:arm32v7-${META_TAG} lsiodev/buildcache:arm32v7-${COMMIT_SHA}-${BUILD_NUMBER}"
               sh "docker push lsiodev/buildcache:arm32v7-${COMMIT_SHA}-${BUILD_NUMBER}"
@@ -270,7 +270,7 @@ pipeline {
                  '''
               sh "curl https://lsio-ci.ams3.digitaloceanspaces.com/qemu-aarch64-static -o qemu-aarch64-static"
               sh "chmod +x qemu-*"
-              sh "docker build --no-cache -f Dockerfile.aarch64 -t ${IMAGE}:arm64v8-${META_TAG} \
+              sh "docker build --no-cache --pull -f Dockerfile.aarch64 -t ${IMAGE}:arm64v8-${META_TAG} \
                            --build-arg ${BUILD_VERSION_ARG}=${EXT_RELEASE} --build-arg VERSION=\"${META_TAG}\" --build-arg BUILD_DATE=${GITHUB_DATE} ."
               sh "docker tag ${IMAGE}:arm64v8-${META_TAG} lsiodev/buildcache:arm64v8-${COMMIT_SHA}-${BUILD_NUMBER}"
               sh "docker push lsiodev/buildcache:arm64v8-${COMMIT_SHA}-${BUILD_NUMBER}"
@@ -435,12 +435,12 @@ pipeline {
           sh '''#! /bin/bash
              echo $DOCKERPASS | docker login -u $DOCKERUSER --password-stdin
              '''
-          sh "docker tag ${IMAGE}:${META_TAG} ${IMAGE}:5.14"
-          sh "docker push ${IMAGE}:5.14"
+          sh "docker tag ${IMAGE}:${META_TAG} ${IMAGE}:xenial-5.14"
+          sh "docker push ${IMAGE}:xenial-5.14"
           sh "docker push ${IMAGE}:${META_TAG}"
           sh '''docker rmi \
                 ${IMAGE}:${META_TAG} \
-                ${IMAGE}:5.14 '''
+                ${IMAGE}:xenial-5.14 '''
                 
         }
       }
@@ -470,32 +470,32 @@ pipeline {
                   docker tag lsiodev/buildcache:arm32v7-${COMMIT_SHA}-${BUILD_NUMBER} ${IMAGE}:arm32v7-${META_TAG}
                   docker tag lsiodev/buildcache:arm64v8-${COMMIT_SHA}-${BUILD_NUMBER} ${IMAGE}:arm64v8-${META_TAG}
                 fi'''
-          sh "docker tag ${IMAGE}:amd64-${META_TAG} ${IMAGE}:amd64-5.14"
-          sh "docker tag ${IMAGE}:arm32v7-${META_TAG} ${IMAGE}:arm32v7-5.14"
-          sh "docker tag ${IMAGE}:arm64v8-${META_TAG} ${IMAGE}:arm64v8-5.14"
+          sh "docker tag ${IMAGE}:amd64-${META_TAG} ${IMAGE}:amd64-xenial-5.14"
+          sh "docker tag ${IMAGE}:arm32v7-${META_TAG} ${IMAGE}:arm32v7-xenial-5.14"
+          sh "docker tag ${IMAGE}:arm64v8-${META_TAG} ${IMAGE}:arm64v8-xenial-5.14"
           sh "docker push ${IMAGE}:amd64-${META_TAG}"
           sh "docker push ${IMAGE}:arm32v7-${META_TAG}"
           sh "docker push ${IMAGE}:arm64v8-${META_TAG}"
-          sh "docker push ${IMAGE}:amd64-5.14"
-          sh "docker push ${IMAGE}:arm32v7-5.14"
-          sh "docker push ${IMAGE}:arm64v8-5.14"
-          sh "docker manifest push --purge ${IMAGE}:5.14 || :"
-          sh "docker manifest create ${IMAGE}:5.14 ${IMAGE}:amd64-5.14 ${IMAGE}:arm32v7-5.14 ${IMAGE}:arm64v8-5.14"
-          sh "docker manifest annotate ${IMAGE}:5.14 ${IMAGE}:arm32v7-5.14 --os linux --arch arm"
-          sh "docker manifest annotate ${IMAGE}:5.14 ${IMAGE}:arm64v8-5.14 --os linux --arch arm64 --variant v8"
+          sh "docker push ${IMAGE}:amd64-xenial-5.14"
+          sh "docker push ${IMAGE}:arm32v7-xenial-5.14"
+          sh "docker push ${IMAGE}:arm64v8-xenial-5.14"
+          sh "docker manifest push --purge ${IMAGE}:xenial-5.14 || :"
+          sh "docker manifest create ${IMAGE}:xenial-5.14 ${IMAGE}:amd64-xenial-5.14 ${IMAGE}:arm32v7-xenial-5.14 ${IMAGE}:arm64v8-xenial-5.14"
+          sh "docker manifest annotate ${IMAGE}:xenial-5.14 ${IMAGE}:arm32v7-xenial-5.14 --os linux --arch arm"
+          sh "docker manifest annotate ${IMAGE}:xenial-5.14 ${IMAGE}:arm64v8-xenial-5.14 --os linux --arch arm64 --variant v8"
           sh "docker manifest push --purge ${IMAGE}:${META_TAG} || :"
           sh "docker manifest create ${IMAGE}:${META_TAG} ${IMAGE}:amd64-${META_TAG} ${IMAGE}:arm32v7-${META_TAG} ${IMAGE}:arm64v8-${META_TAG}"
           sh "docker manifest annotate ${IMAGE}:${META_TAG} ${IMAGE}:arm32v7-${META_TAG} --os linux --arch arm"
           sh "docker manifest annotate ${IMAGE}:${META_TAG} ${IMAGE}:arm64v8-${META_TAG} --os linux --arch arm64 --variant v8"
-          sh "docker manifest push --purge ${IMAGE}:5.14"
+          sh "docker manifest push --purge ${IMAGE}:xenial-5.14"
           sh "docker manifest push --purge ${IMAGE}:${META_TAG}"
           sh '''docker rmi \
                 ${IMAGE}:amd64-${META_TAG} \
-                ${IMAGE}:amd64-5.14 \
+                ${IMAGE}:amd64-xenial-5.14 \
                 ${IMAGE}:arm32v7-${META_TAG} \
-                ${IMAGE}:arm32v7-5.14 \
+                ${IMAGE}:arm32v7-xenial-5.14 \
                 ${IMAGE}:arm64v8-${META_TAG} \
-                ${IMAGE}:arm64v8-5.14 \
+                ${IMAGE}:arm64v8-xenial-5.14 \
                 lsiodev/buildcache:arm32v7-${COMMIT_SHA}-${BUILD_NUMBER} \
                 lsiodev/buildcache:arm64v8-${COMMIT_SHA}-${BUILD_NUMBER} '''
         }
