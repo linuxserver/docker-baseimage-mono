@@ -4,7 +4,7 @@
 project_name: docker-baseimage-mono
 external_type: os
 release_type: prerelease
-release_tag: 5.14
+release_tag: xenial-5.14
 ls_branch: 5.14
 repo_vars:
   - BUILD_VERSION_ARG = 'MONO_VERSION'
