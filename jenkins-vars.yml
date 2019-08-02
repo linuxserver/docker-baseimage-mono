@@ -4,8 +4,8 @@
 project_name: docker-baseimage-mono
 external_type: os
 release_type: prerelease
-release_tag: bionic-5.14
-ls_branch: bionic-5.14
+release_tag: LTS
+ls_branch: LTS
 repo_vars:
   - BUILD_VERSION_ARG = 'MONO_VERSION'
   - LS_USER = 'linuxserver'
