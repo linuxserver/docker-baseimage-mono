@@ -71,7 +71,7 @@ libgcrypt201.6.5-2ubuntu0.5
 libgdbm31.8.3-13.1
 libgdiplus5.6-0xamarin5+ubuntu1604b1
 libgif75.1.4-0.3~16.04
-libglib2.0-02.48.2-0ubuntu4.3
+libglib2.0-02.48.2-0ubuntu4.4
 libgmp102:6.1.0+dfsg-2
 libgnutls303.4.10-4ubuntu1.5
 libgpg-error01.21-2ubuntu1
