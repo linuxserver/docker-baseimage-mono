@@ -18,7 +18,7 @@ debconf1.5.58ubuntu2
 debianutils4.7
 diffutils1:3.3-3
 dpkg1.18.4ubuntu1.5
-dpkg-dev1.18.4ubuntu1.5
+dpkg-dev1.18.4ubuntu1.6
 e2fslibs1.42.13-1ubuntu1
 e2fsprogs1.42.13-1ubuntu1
 findutils4.6.0+git+20160126-2
@@ -59,7 +59,7 @@ libcurl4-openssl-dev7.47.0-1ubuntu2.13
 libdb5.35.3.28-11ubuntu0.2
 libdebconfclient00.198ubuntu1
 libdevmapper1.02.12:1.02.110-1ubuntu10
-libdpkg-perl1.18.4ubuntu1.5
+libdpkg-perl1.18.4ubuntu1.6
 libexif120.6.21-2
 libexpat12.1.0-7ubuntu0.16.04.4
 libfdisk12.27.1-6ubuntu3.7
