@@ -68,7 +68,7 @@ libfreetype62.6.1-0.1ubuntu2.4
 libgcc11:6.0.1-0ubuntu1
 libgcrypt201.6.5-2ubuntu0.5
 libgdbm31.8.3-13.1
-libgdiplus6.0.2-0xamarin1+ubuntu1604b1
+libgdiplus6.0.4-0xamarin1+ubuntu1604b1
 libgif75.1.4-0.3~16.04.1
 libglib2.0-02.48.2-0ubuntu4.4
 libgmp102:6.1.0+dfsg-2
