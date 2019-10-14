@@ -19,8 +19,8 @@ debianutils4.7
 diffutils1:3.3-3
 dpkg1.18.4ubuntu1.6
 dpkg-dev1.18.4ubuntu1.6
-e2fslibs1.42.13-1ubuntu1
-e2fsprogs1.42.13-1ubuntu1
+e2fslibs1.42.13-1ubuntu1.1
+e2fsprogs1.42.13-1ubuntu1.1
 findutils4.6.0+git+20160126-2
 fontconfig-config2.11.94-0ubuntu1.1
 fonts-dejavu-core2.35-1
@@ -51,7 +51,7 @@ libcairo21.14.6-1
 libcap21:2.24-12
 libcap2-bin1:2.24-12
 libc-bin2.23-0ubuntu11
-libcomerr21.42.13-1ubuntu1
+libcomerr21.42.13-1ubuntu1.1
 libcryptsetup42:1.6.6-5ubuntu2.1
 libcurl37.47.0-1ubuntu2.14
 libcurl3-gnutls7.47.0-1ubuntu2.14
@@ -261,8 +261,8 @@ libperl5.225.22.1-9ubuntu0.6
 libpixman-1-00.33.6-1
 libpng12-01.2.54-1ubuntu1.1
 libprocps42:3.3.10-4ubuntu2.4
-libpython2.7-minimal2.7.12-1ubuntu0~16.04.8
-libpython2.7-stdlib2.7.12-1ubuntu0~16.04.8
+libpython2.7-minimal2.7.12-1ubuntu0~16.04.9
+libpython2.7-stdlib2.7.12-1ubuntu0~16.04.9
 libpython-stdlib2.7.12-1~16.04
 libreadline66.3-8ubuntu2
 libroken18-heimdal1.7~git20150920+dfsg-4ubuntu1.16.04.1
@@ -277,7 +277,7 @@ libsemanage-common2.3-1build3
 libsepol12.4-2
 libsmartcols12.27.1-6ubuntu3.8
 libsqlite3-03.11.0-1ubuntu1.2
-libss21.42.13-1ubuntu1
+libss21.42.13-1ubuntu1.1
 libssl1.0.01.0.2g-1ubuntu4.15
 libstdc++65.4.0-6ubuntu1~16.04.11
 libsystemd0229-4ubuntu21.22
@@ -330,8 +330,8 @@ perl-modules-5.225.22.1-9ubuntu0.6
 pkg-config0.29.1-0ubuntu1
 procps2:3.3.10-4ubuntu2.4
 python2.7.12-1~16.04
-python2.72.7.12-1ubuntu0~16.04.8
-python2.7-minimal2.7.12-1ubuntu0~16.04.8
+python2.72.7.12-1ubuntu0~16.04.9
+python2.7-minimal2.7.12-1ubuntu0~16.04.9
 python-minimal2.7.12-1~16.04
 readline-common6.3-8ubuntu2
 sed4.2.2-7
@@ -342,7 +342,7 @@ systemd-sysv229-4ubuntu21.22
 sysvinit-utils2.88dsf-59.3ubuntu2
 sysv-rc2.88dsf-59.3ubuntu2
 tar1.28-2.1ubuntu0.1
-tzdata2019b-0ubuntu0.16.04
+tzdata2019c-0ubuntu0.16.04
 ubuntu-keyring2012.05.19
 ucf3.0036
 unzip6.0-20ubuntu1
