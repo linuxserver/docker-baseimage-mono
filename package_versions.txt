@@ -2,7 +2,7 @@ adduser3.113+nmu3ubuntu4
 apt1.2.32
 apt-transport-https1.2.32
 apt-utils1.2.32
-base-files9.4ubuntu4.8
+base-files9.4ubuntu4.11
 base-passwd3.5.39
 bash4.3-14ubuntu1.4
 binutils2.26.1-1ubuntu1~16.04.8
@@ -274,7 +274,7 @@ libssl1.0.01.0.2g-1ubuntu4.15
 libstdc++65.4.0-6ubuntu1~16.04.11
 libsystemd0229-4ubuntu21.22
 libtasn1-64.7-3ubuntu0.16.04.3
-libtiff54.0.6-1ubuntu0.6
+libtiff54.0.6-1ubuntu0.7
 libtinfo56.0+20160213-1ubuntu1
 libudev1229-4ubuntu21.22
 libusb-0.1-42:0.1.12-28
