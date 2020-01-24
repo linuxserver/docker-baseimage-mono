@@ -66,7 +66,7 @@ libffi63.2.1-4
 libfontconfig12.11.94-0ubuntu1.1
 libfreetype62.6.1-0.1ubuntu2.4
 libgcc11:6.0.1-0ubuntu1
-libgcrypt201.6.5-2ubuntu0.5
+libgcrypt201.6.5-2ubuntu0.6
 libgdbm31.8.3-13.1
 libgdiplus6.0.4-0xamarin1+ubuntu1604b1
 libgif75.1.4-0.3~16.04.1
@@ -326,6 +326,7 @@ python2.72.7.12-1ubuntu0~16.04.9
 python2.7-minimal2.7.12-1ubuntu0~16.04.9
 python-minimal2.7.12-1~16.04
 readline-common6.3-8ubuntu2
+repo-mediaarea1.0-12
 sed4.2.2-7
 sensible-utils0.0.9ubuntu0.16.04.1
 sqlite33.11.0-1ubuntu1.3
