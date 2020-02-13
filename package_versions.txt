@@ -6,7 +6,7 @@ base-files9.4ubuntu4.11
 base-passwd3.5.39
 bash4.3-14ubuntu1.4
 binutils2.26.1-1ubuntu1~16.04.8
-bsdutils1:2.27.1-6ubuntu3.9
+bsdutils1:2.27.1-6ubuntu3.10
 bzip21.0.6-8ubuntu0.2
 ca-certificates20170717~16.04.2
 ca-certificates-mono6.8.0.105-0xamarin3+ubuntu1604b1
@@ -43,7 +43,7 @@ libasn1-8-heimdal1.7~git20150920+dfsg-4ubuntu1.16.04.1
 libattr11:2.4.47-2
 libaudit11:2.4.5-1ubuntu2.1
 libaudit-common1:2.4.5-1ubuntu2.1
-libblkid12.27.1-6ubuntu3.9
+libblkid12.27.1-6ubuntu3.10
 libbz2-1.01.0.6-8ubuntu0.2
 libc62.23-0ubuntu11
 libcairo21.14.6-1
@@ -59,9 +59,9 @@ libdb5.35.3.28-11ubuntu0.2
 libdebconfclient00.198ubuntu1
 libdevmapper1.02.12:1.02.110-1ubuntu10
 libdpkg-perl1.18.4ubuntu1.6
-libexif120.6.21-2
+libexif120.6.21-2ubuntu0.1
 libexpat12.1.0-7ubuntu0.16.04.5
-libfdisk12.27.1-6ubuntu3.9
+libfdisk12.27.1-6ubuntu3.10
 libffi63.2.1-4
 libfontconfig12.11.94-0ubuntu1.1
 libfreetype62.6.1-0.1ubuntu2.4
@@ -239,7 +239,7 @@ libmono-webbrowser4.0-cil6.8.0.105-0xamarin3+ubuntu1604b1
 libmono-webmatrix-data4.0-cil6.8.0.105-0xamarin3+ubuntu1604b1
 libmono-windowsbase4.0-cil6.8.0.105-0xamarin3+ubuntu1604b1
 libmono-xbuild-tasks4.0-cil6.8.0.105-0xamarin3+ubuntu1604b1
-libmount12.27.1-6ubuntu3.9
+libmount12.27.1-6ubuntu3.10
 libncurses56.0+20160213-1ubuntu1
 libncursesw56.0+20160213-1ubuntu1
 libnettle63.2-1ubuntu0.16.04.1
@@ -267,7 +267,7 @@ libselinux12.4-3build2
 libsemanage12.3-1build3
 libsemanage-common2.3-1build3
 libsepol12.4-2
-libsmartcols12.27.1-6ubuntu3.9
+libsmartcols12.27.1-6ubuntu3.10
 libsqlite3-03.11.0-1ubuntu1.3
 libss21.42.13-1ubuntu1.2
 libssl1.0.01.0.2g-1ubuntu4.15
@@ -279,7 +279,7 @@ libtinfo56.0+20160213-1ubuntu1
 libudev1229-4ubuntu21.23
 libusb-0.1-42:0.1.12-28
 libustr-1.0-11.0.4-5
-libuuid12.27.1-6ubuntu3.9
+libuuid12.27.1-6ubuntu3.10
 libwind0-heimdal1.7~git20150920+dfsg-4ubuntu1.16.04.1
 libx11-62:1.6.3-1ubuntu2.1
 libx11-data2:1.6.3-1ubuntu2.1
@@ -309,7 +309,7 @@ mono-runtime-common6.8.0.105-0xamarin3+ubuntu1604b1
 mono-runtime-sgen6.8.0.105-0xamarin3+ubuntu1604b1
 mono-vbnc4.7-0xamarin2+ubuntu1604b1
 mono-xbuild6.8.0.105-0xamarin3+ubuntu1604b1
-mount2.27.1-6ubuntu3.9
+mount2.27.1-6ubuntu3.10
 multiarch-support2.23-0ubuntu11
 ncurses-base6.0+20160213-1ubuntu1
 ncurses-bin6.0+20160213-1ubuntu1
@@ -339,6 +339,6 @@ tzdata2019c-0ubuntu0.16.04
 ubuntu-keyring2012.05.19
 ucf3.0036
 unzip6.0-20ubuntu1
-util-linux2.27.1-6ubuntu3.9
+util-linux2.27.1-6ubuntu3.10
 xz-utils5.1.1alpha+20120614-2ubuntu2
 zlib1g1:1.2.8.dfsg-2ubuntu4.3
