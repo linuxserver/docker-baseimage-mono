@@ -268,7 +268,7 @@ libsemanage12.3-1build3
 libsemanage-common2.3-1build3
 libsepol12.4-2
 libsmartcols12.27.1-6ubuntu3.10
-libsqlite3-03.11.0-1ubuntu1.3
+libsqlite3-03.11.0-1ubuntu1.4
 libss21.42.13-1ubuntu1.2
 libssl1.0.01.0.2g-1ubuntu4.15
 libstdc++65.4.0-6ubuntu1~16.04.12
@@ -329,7 +329,7 @@ readline-common6.3-8ubuntu2
 repo-mediaarea1.0-12
 sed4.2.2-7
 sensible-utils0.0.9ubuntu0.16.04.1
-sqlite33.11.0-1ubuntu1.3
+sqlite33.11.0-1ubuntu1.4
 systemd229-4ubuntu21.27
 systemd-sysv229-4ubuntu21.27
 sysvinit-utils2.88dsf-59.3ubuntu2
