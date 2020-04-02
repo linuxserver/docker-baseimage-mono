@@ -252,7 +252,7 @@ libpcre32:8.38-3.1
 libperl5.225.22.1-9ubuntu0.6
 libpixman-1-00.33.6-1
 libpng12-01.2.54-1ubuntu1.1
-libprocps42:3.3.10-4ubuntu2.4
+libprocps42:3.3.10-4ubuntu2.5
 libpython2.7-minimal2.7.12-1ubuntu0~16.04.9
 libpython2.7-stdlib2.7.12-1ubuntu0~16.04.9
 libpython-stdlib2.7.12-1~16.04
@@ -320,7 +320,7 @@ perl5.22.1-9ubuntu0.6
 perl-base5.22.1-9ubuntu0.6
 perl-modules-5.225.22.1-9ubuntu0.6
 pkg-config0.29.1-0ubuntu1
-procps2:3.3.10-4ubuntu2.4
+procps2:3.3.10-4ubuntu2.5
 python2.7.12-1~16.04
 python2.72.7.12-1ubuntu0~16.04.9
 python2.7-minimal2.7.12-1ubuntu0~16.04.9
