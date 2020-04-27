@@ -95,7 +95,7 @@ libkrb5support01.13.2+dfsg-5ubuntu2.1
 libldap-2.4-22.4.42+dfsg-2ubuntu3.7
 liblz4-10.0~r131-2ubuntu2
 liblzma55.1.1alpha+20120614-2ubuntu2
-libmediainfo0v520.03-1
+libmediainfo0v50.7.82-1
 libmms00.6.4-1
 libmono-2.0-dev5.14.0.177-0xamarin3+ubuntu1604b1
 libmono-accessibility4.0-cil5.14.0.177-0xamarin3+ubuntu1604b1
@@ -261,8 +261,8 @@ libperl5.225.22.1-9ubuntu0.6
 libpixman-1-00.33.6-1
 libpng12-01.2.54-1ubuntu1.1
 libprocps42:3.3.10-4ubuntu2.5
-libpython2.7-minimal2.7.12-1ubuntu0~16.04.9
-libpython2.7-stdlib2.7.12-1ubuntu0~16.04.9
+libpython2.7-minimal2.7.12-1ubuntu0~16.04.11
+libpython2.7-stdlib2.7.12-1ubuntu0~16.04.11
 libpython-stdlib2.7.12-1~16.04
 libreadline66.3-8ubuntu2
 libroken18-heimdal1.7~git20150920+dfsg-4ubuntu1.16.04.1
@@ -284,6 +284,7 @@ libsystemd0229-4ubuntu21.27
 libtasn1-64.7-3ubuntu0.16.04.3
 libtiff54.0.6-1ubuntu0.7
 libtinfo56.0+20160213-1ubuntu1
+libtinyxml2-2v52.2.0-1.1ubuntu1
 libudev1229-4ubuntu21.27
 libusb-0.1-42:0.1.12-28
 libustr-1.0-11.0.4-5
@@ -298,14 +299,14 @@ libxcb-shm01.11.1-1ubuntu1
 libxdmcp61:1.1.2-1.1
 libxext62:1.3.3-1
 libxrender11:0.9.9-0ubuntu1
-libzen0v50.4.38-1
+libzen0v50.4.32-1ubuntu0.16.04.1
 locales2.23-0ubuntu11
 login1:4.2-3.1ubuntu5.4
 lsb-base9.20160110ubuntu0.2
 make4.1-6
 makedev2.3.1-93ubuntu2~ubuntu16.04.1
 mawk1.3.3-17ubuntu2
-mediainfo20.03-1
+mediainfo0.7.82-1
 mime-support3.59ubuntu1
 mono-4.0-gac5.14.0.177-0xamarin3+ubuntu1604b1
 mono-devel5.14.0.177-0xamarin3+ubuntu1604b1
@@ -330,8 +331,8 @@ perl-modules-5.225.22.1-9ubuntu0.6
 pkg-config0.29.1-0ubuntu1
 procps2:3.3.10-4ubuntu2.5
 python2.7.12-1~16.04
-python2.72.7.12-1ubuntu0~16.04.9
-python2.7-minimal2.7.12-1ubuntu0~16.04.9
+python2.72.7.12-1ubuntu0~16.04.11
+python2.7-minimal2.7.12-1ubuntu0~16.04.11
 python-minimal2.7.12-1~16.04
 readline-common6.3-8ubuntu2
 repo-mediaarea1.0-12
