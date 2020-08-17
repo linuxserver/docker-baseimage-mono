@@ -2,7 +2,7 @@ adduser3.113+nmu3ubuntu4
 apt1.2.32ubuntu0.1
 apt-transport-https1.2.32ubuntu0.1
 apt-utils1.2.32ubuntu0.1
-base-files9.4ubuntu4.11
+base-files9.4ubuntu4.12
 base-passwd3.5.39
 bash4.3-14ubuntu1.4
 binutils2.26.1-1ubuntu1~16.04.8
@@ -95,7 +95,7 @@ libkrb5support01.13.2+dfsg-5ubuntu2.1
 libldap-2.4-22.4.42+dfsg-2ubuntu3.9
 liblz4-10.0~r131-2ubuntu2
 liblzma55.1.1alpha+20120614-2ubuntu2
-libmediainfo0v520.03-1
+libmediainfo0v520.08-1
 libmms00.6.4-1
 libmono-2.0-dev5.14.0.177-0xamarin3+ubuntu1604b1
 libmono-accessibility4.0-cil5.14.0.177-0xamarin3+ubuntu1604b1
@@ -305,7 +305,7 @@ lsb-base9.20160110ubuntu0.2
 make4.1-6
 makedev2.3.1-93ubuntu2~ubuntu16.04.1
 mawk1.3.3-17ubuntu2
-mediainfo20.03-1
+mediainfo20.08-1
 mime-support3.59ubuntu1
 mono-4.0-gac5.14.0.177-0xamarin3+ubuntu1604b1
 mono-devel5.14.0.177-0xamarin3+ubuntu1604b1
