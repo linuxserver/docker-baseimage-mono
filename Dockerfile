@@ -1,4 +1,4 @@
-FROM lsiobase/ubuntu:bionic
+FROM ghcr.io/linuxserver/baseimage-ubuntu:bionic
 
 # environment settings
 ARG DEBIAN_FRONTEND="noninteractive"
