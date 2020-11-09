@@ -8,7 +8,7 @@ bash4.3-14ubuntu1.4
 binutils2.26.1-1ubuntu1~16.04.8
 bsdutils1:2.27.1-6ubuntu3.10
 bzip21.0.6-8ubuntu0.2
-ca-certificates20190110~16.04.1
+ca-certificates20201027ubuntu0.16.04.1
 ca-certificates-mono5.14.0.177-0xamarin3+ubuntu1604b1
 cli-common0.9+xamarin7+ubuntu1604b1
 coreutils8.25-2ubuntu3~16.04
@@ -343,7 +343,7 @@ systemd-sysv229-4ubuntu21.29
 sysvinit-utils2.88dsf-59.3ubuntu2
 sysv-rc2.88dsf-59.3ubuntu2
 tar1.28-2.1ubuntu0.1
-tzdata2020a-0ubuntu0.16.04
+tzdata2020d-0ubuntu0.16.04
 ubuntu-keyring2012.05.19.1
 ucf3.0036
 unzip6.0-20ubuntu1
