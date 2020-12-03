@@ -1,4 +1,4 @@
-FROM lsiobase/ubuntu:xenial
+FROM ghcr.io/linuxserver/baseimage-ubuntu:xenial
 
 # environment settings
 ARG DEBIAN_FRONTEND="noninteractive"
