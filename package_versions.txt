@@ -346,7 +346,7 @@ tar1.28-2.1ubuntu0.1
 tzdata2020d-0ubuntu0.16.04
 ubuntu-keyring2012.05.19.1
 ucf3.0036
-unzip6.0-20ubuntu1
+unzip6.0-20ubuntu1.1
 util-linux2.27.1-6ubuntu3.10
 xz-utils5.1.1alpha+20120614-2ubuntu2
 zlib1g1:1.2.8.dfsg-2ubuntu4.3
