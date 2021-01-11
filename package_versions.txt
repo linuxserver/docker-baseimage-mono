@@ -251,7 +251,7 @@ libnunit-core-interfaces2.6.3-cil2.6.4+dfsg-1
 libnunit-framework2.6.3-cil2.6.4+dfsg-1
 libnunit-mocks2.6.3-cil2.6.4+dfsg-1
 libnunit-util2.6.3-cil2.6.4+dfsg-1
-libp11-kit00.23.2-5~ubuntu16.04.1
+libp11-kit00.23.2-5~ubuntu16.04.2
 libpam0g1.1.8-3.2ubuntu2.3
 libpam-modules1.1.8-3.2ubuntu2.3
 libpam-modules-bin1.1.8-3.2ubuntu2.3
