@@ -8,7 +8,7 @@ bash4.3-14ubuntu1.4
 binutils2.26.1-1ubuntu1~16.04.8
 bsdutils1:2.27.1-6ubuntu3.10
 bzip21.0.6-8ubuntu0.2
-ca-certificates20201027ubuntu0.16.04.1
+ca-certificates20210119~16.04.1
 ca-certificates-mono6.12.0.107-0xamarin13+ubuntu1604b1
 coreutils8.25-2ubuntu3~16.04
 curl7.47.0-1ubuntu2.18
@@ -91,7 +91,7 @@ libkmod222-1ubuntu5.2
 libkrb5-26-heimdal1.7~git20150920+dfsg-4ubuntu1.16.04.1
 libkrb5-31.13.2+dfsg-5ubuntu2.2
 libkrb5support01.13.2+dfsg-5ubuntu2.2
-libldap-2.4-22.4.42+dfsg-2ubuntu3.11
+libldap-2.4-22.4.42+dfsg-2ubuntu3.12
 liblz4-10.0~r131-2ubuntu2
 liblzma55.1.1alpha+20120614-2ubuntu2
 libmediainfo0v520.09-1
