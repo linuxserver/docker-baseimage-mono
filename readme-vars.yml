@@ -2,6 +2,12 @@
 
 # project information
 project_name: baseimage-mono
+
+project_deprecation_status: true
+project_deprecation_message: |
+  We recommend our focal mono baseimage instead:
+  https://github.com/linuxserver/docker-baseimage-mono
+
 full_custom_readme: |
   {% raw -%}
   [linuxserverurl]: https://linuxserver.io
