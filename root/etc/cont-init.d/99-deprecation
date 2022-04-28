@@ -1,0 +1,21 @@
+#!/usr/bin/with-contenv bash
+
+echo '
+******************************************************
+******************************************************
+*                                                    *
+*                                                    *
+*           This baseimage is deprecated.            *
+*    We will not offer support for this baseimage    *
+*            and it will not be updated.             *
+*                                                    *
+*                                                    *
+******************************************************
+******************************************************
+
+We recommend our focal mono baseimage instead:
+https://github.com/linuxserver/docker-baseimage-mono
+
+
+******************************************************
+******************************************************'
