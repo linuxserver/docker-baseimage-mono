@@ -65,7 +65,7 @@ libcurl47.68.0-1ubuntu2.11
 libcurl4-openssl-dev7.68.0-1ubuntu2.11
 libdb5.35.3.28+dfsg1-0.6ubuntu2
 libdebconfclient00.251ubuntu1
-libdpkg-perl1.19.7ubuntu3
+libdpkg-perl1.19.7ubuntu3.2
 libexif120.6.21-6ubuntu0.4
 libexpat12.2.9-1ubuntu0.4
 libext2fs21.45.5-2ubuntu1
