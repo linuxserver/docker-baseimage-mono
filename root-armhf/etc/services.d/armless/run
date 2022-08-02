@@ -1,4 +1,4 @@
 #!/usr/bin/with-contenv bash
 
 exec \
-    s6-svscanctl -t /var/run/s6/services
+    s6-svscanctl -t /run/service/
