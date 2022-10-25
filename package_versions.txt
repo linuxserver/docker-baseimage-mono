@@ -99,7 +99,7 @@ libkeyutils11.5.9-9.2ubuntu2.1
 libkrb5-26-heimdal7.5.0+dfsg-1ubuntu0.1
 libkrb5-31.16-2ubuntu0.2
 libkrb5support01.16-2ubuntu0.2
-libksba81.3.5-2
+libksba81.3.5-2ubuntu0.18.04.1
 libldap-2.4-22.4.45+dfsg-1ubuntu1.11
 libldap-common2.4.45+dfsg-1ubuntu1.11
 liblz4-10.0~r131-2ubuntu3.1
@@ -268,7 +268,7 @@ libpam-modules1.1.8-3.6ubuntu2.18.04.3
 libpam-modules-bin1.1.8-3.6ubuntu2.18.04.3
 libpam-runtime1.1.8-3.6ubuntu2.18.04.3
 libpcre32:8.39-9
-libperl5.265.26.1-6ubuntu0.5
+libperl5.265.26.1-6ubuntu0.6
 libpixman-1-00.34.0-2
 libpng16-161.6.34-1ubuntu0.18.04.2
 libprocps62:3.3.12-3ubuntu1.2
@@ -335,9 +335,9 @@ ncurses-bin6.1-1ubuntu1.18.04
 openssl1.1.1-1ubuntu2.1~18.04.20
 passwd1:4.5-1ubuntu2.2
 patch2.7.6-2ubuntu1.1
-perl5.26.1-6ubuntu0.5
-perl-base5.26.1-6ubuntu0.5
-perl-modules-5.265.26.1-6ubuntu0.5
+perl5.26.1-6ubuntu0.6
+perl-base5.26.1-6ubuntu0.6
+perl-modules-5.265.26.1-6ubuntu0.6
 pinentry-curses1.1.0-1
 pkg-config0.29.1-0ubuntu2
 procps2:3.3.12-3ubuntu1.2
