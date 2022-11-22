@@ -66,7 +66,7 @@ libdb5.35.3.28-13.1ubuntu1.1
 libdebconfclient00.213ubuntu1
 libdpkg-perl1.19.0.5ubuntu2.4
 libexif120.6.21-4ubuntu0.6
-libexpat12.2.5-3ubuntu0.7
+libexpat12.2.5-3ubuntu0.8
 libext2fs21.44.1-1ubuntu1.3
 libfdisk12.31.1-0.4ubuntu3.7
 libffi63.2.1-8
@@ -261,7 +261,7 @@ libpam-modules-bin1.1.8-3.6ubuntu2.18.04.3
 libpam-runtime1.1.8-3.6ubuntu2.18.04.3
 libpcre32:8.39-9
 libperl5.265.26.1-6ubuntu0.6
-libpixman-1-00.34.0-2
+libpixman-1-00.34.0-2ubuntu0.1
 libpng16-161.6.34-1ubuntu0.18.04.2
 libprocps62:3.3.12-3ubuntu1.2
 libpsl50.19.1-5build1
