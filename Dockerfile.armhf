@@ -1,6 +1,0 @@
-FROM ghcr.io/linuxserver/baseimage-ubuntu:arm32v7-focal
-
-# environment settings
-ARG DEBIAN_FRONTEND="noninteractive"
-
-COPY /root-armhf /
