@@ -2,6 +2,15 @@
 
 # project information
 project_name: baseimage-mono
+
+project_deprecation_status: true
+project_deprecation_message: |
+  We recommend our Jammy baseimage instead:
+  https://github.com/linuxserver/docker-baseimage-ubuntu
+
+  See our Duplicati image for an example using mono:
+  https://github.com/linuxserver/docker-duplicati
+
 full_custom_readme: |
   {% raw -%}
   [linuxserverurl]: https://linuxserver.io
